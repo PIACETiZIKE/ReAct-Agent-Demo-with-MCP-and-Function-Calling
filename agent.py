@@ -20,7 +20,10 @@ class ReActAgent:
         self.model = model
         self.project_directory = project_directory
         self.client = OpenAI(
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+            # 原地址：直接调用阿里云 API
+            # base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+            # 新地址：指向本地 llm_logger 代理服务（默认端口 8000）
+            base_url="http://localhost:8000",
             api_key=ReActAgent.get_api_key(),
         )
         self.tools = []
