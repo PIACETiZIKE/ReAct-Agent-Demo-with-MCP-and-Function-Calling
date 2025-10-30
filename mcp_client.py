@@ -2,6 +2,7 @@ import asyncio
 from typing import Optional, List, Dict, Any
 from contextlib import AsyncExitStack
 import os
+import sys
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -21,7 +22,7 @@ class MCPClient:
         if not is_python:
             raise ValueError("Server script must be a .py file")
 
-        command = "python"
+        command = sys.executable
         server_params = StdioServerParameters(
             command=command,
             args=[self.server_script_path],
