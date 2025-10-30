@@ -2,7 +2,6 @@ import asyncio
 from typing import Optional, List, Dict, Any
 from contextlib import AsyncExitStack
 import os
-import sys
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -22,10 +21,23 @@ class MCPClient:
         if not is_python:
             raise ValueError("Server script must be a .py file")
 
-        command = sys.executable
+        # 获取 mcplogger.py 的绝对路径（假设与 mcp_client.py 在同一目录）
+        mcplogger_path = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "mcp_logger.py")
+        )
+
+        # 构造通过 mcplogger 启动服务器的命令
+        # 格式：python mcplogger.py python mcp_server.py
+        command = "python"
+        args = [
+            mcplogger_path,  # 日志记录器脚本
+            "python",  # 用于启动服务器的解释器
+            self.server_script_path  # 服务器脚本路径
+        ]
+
         server_params = StdioServerParameters(
             command=command,
-            args=[self.server_script_path],
+            args=args,  # 使用包装后的参数
             env=None
         )
 
