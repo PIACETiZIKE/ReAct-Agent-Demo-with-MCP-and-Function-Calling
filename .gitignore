@@ -5,3 +5,4 @@ __pycache__/
 .env
 *.log
 mcp_log.md
+llm_log.md
