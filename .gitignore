@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 *.pyo
 .env
+*.log
+mcp_log.md
