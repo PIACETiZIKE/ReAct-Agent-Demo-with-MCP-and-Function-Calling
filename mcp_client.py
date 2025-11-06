@@ -8,6 +8,7 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
 class MCPClient:
+    # 由于只有一个本地的mcp服务器，所以此处直接在初始化的时候把服务器脚本路径传入
     def __init__(self, server_script_path: str):
         # Initialize session and client objects
         self.session: Optional[ClientSession] = None
