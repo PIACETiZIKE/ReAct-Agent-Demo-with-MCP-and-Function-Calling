@@ -1,0 +1,5 @@
+click==8.2.1
+python-dotenv==1.1.1
+openai==1.91.0
+mcp==1.19.0
+httpx==0.28.1
